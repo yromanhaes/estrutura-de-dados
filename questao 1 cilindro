@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+//STRUCT PARA ALOCAR OS DADOS DO CILINDRO
+
+typedef struct
+{
+    float raio;
+    float altura;
+    
+} cilindro;
+
+//STRUCT PARA ALOCAR OS DADOS DE CADA EQUAÇÃO
+typedef struct
+{
+	float volume;
+    float lateral;
+	float base;
+    float total;
+    
+} equacao;
+
+//VARIAVEL RECEBENDO OS VALORES DA LATERAL,BASE,VOLUME E AREA DO CILINDRO
+int equacao_lateral(cilindro cin, equacao *p)
+{
+    (*p).lateral = cin.raio * 3.14 * cin.altura;
+}
+
+int equacao_base(cilindro cin, equacao *p)
+{
+    (*p).base = cin.raio * cin.raio * 3.14;
+}
+
+int equacao_volume(cilindro cin, equacao *p)
+{
+    (*p).volume = cin.raio * cin.raio * 3.14 * cin.altura;
+}
+
+int equacao_area(equacao *p)
+{
+    (*p).total = (2 * (*p).base) + (2 * (*p).lateral);
+}
+    
+//STRUCT DE REFERENCIA
+void cilindro_valores(cilindro *cin, int raio, int altura)
+{
+    (*cin).raio = raio;
+    (*cin).altura = altura;
+}
+
+void Resultado(resultados)
+{
+    printf("Area do Cilindro = %f\n", resultado.area_total);
+    printf("Volume do Cilindro = %f\n", resultado.volume);
+}
+
+int main()
+{
+
+    cilindro cin;   
+    equacao area; 
+
+    cilindro_resultados(&c, 2 , 3 ); 
+
+    equacao_base(cin, &area);    
+    equacao_lateral(cin, &area); 
+    eqaucao_volume(cin, &area);  
+    eqaucao_area_total(&area); 
+
+    Resultado(area);
+}
