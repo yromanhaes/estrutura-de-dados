@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+	printf("Matriz x:\n");
+	int a[3][3];
+	int i, j, k;
+//	criando matriz x
+	for (i=0;i<3;i++){
+		for (j=0;j<3;j++){
+			a[i][j]= rand()%2;
+		}
+	}
+	
+//	Mostrando Matriz x
+	for (i=0;i<3;i++){
+		for (j=0;j<3;j++){
+			printf("%d\t",a[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+	
+	
+//	Criando Matriz y
+	printf("Matrix 	y:\n");
+	int b[3][3];
+	for (i=0;i<3;i++){
+		for (j=0;j<3;j++){
+			b[i][j]= rand()%2;
+		}
+	}
+	
+//	Mostrando Matriz y
+	for (i=0;i<3;i++){
+		for (j=0;j<3;j++){
+			printf("%d\t",b[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+	
+	
+	int c[3][3];
+	
+//	Soma das matrizes
+	for (i=0;i<3;i++){
+		for (j=0;j<3;j++){
+			c[i][j]=a[i][j]+b[i][j];
+		}
+	}
+	
+//	Mostrando a soma das matrizes
+	printf("Sum Matrix:\n");
+	for (i=0;i<3;i++){
+		for (j=0;j<3;j++){
+			printf("%d\t",c[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+	
+//	Multiplicação das matrizes
+	int d[3][3];
+	for (i=0;i<3;i++){
+		for (j=0;j<3;j++){
+			d[i][j]=0;
+			for (k=0;k<3;k++){
+				d[i][j]+=a[i][k]*b[k][j];
+			}
+		}
+	}
+	
+	
+//	Mostrando a multiplicação das matrizes
+	printf("Multiplication Matrix:\n");
+	for (i=0;i<3;i++){
+		for (j=0;j<3;j++){
+			printf("%d\t",d[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+	
+	
+		
+}
