@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void createMatriZ			(int size, int a[size][size]){
+	int i,j;
+	
+	for (i=0;i<size;i++){
+		for (j=0;j<size;j++){
+			a[i][j]= rand()%2;
+		}
+	}
+}
+void printMatriZ			(int size, int a[size][size]){
+	//	Mostrando a Matriz
+	int i,j;
+	for (i=0;i<size;i++){
+		for (j=0;j<size;j++){
+			printf("%d\t",a[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+}
+int soma_matriz 				(int size, int a[size][size], int b[size][size], int c[size][size]){
+	int i,j,OperacoesSoma=0;
+	for (i=0;i<size;i++){
+		for (j=0;j<size;j++){
+			c[i][j]=a[i][j]+b[i][j];
+			OperacoesSoma++;
+		}
+	}
+	return OperacoesSoma;
+}
+int multiplicao_matriz 	(int size, int a[size][size], int b[size][size], int c[size][size]){
+	int i,j,k, OperacoesMultiplicacao=0;
+	for (i=0;i<size;i++){
+		for (j=0;j<size;j++){
+			c[i][j]=0;
+			for (k=0;k<size;k++){
+				c[i][j]+=a[i][k]*b[k][j];
+				OperacoesMultiplicacao+=2;
+			}
+		}
+	}
+	return OperacoesMultiplicacao;
+}
+
+double printTimer				(clock_t time){
+	double timeTaken= (double)time*1000/CLOCKS_PER_SEC;
+  return timeTaken;
+}
+
+void Q6i(int size, double timeSum, double timeMult){
+	printf("\ti) Tempo em milissegundos:\n");
+	printf("\tPara matrizes quadradas de tamanho %d\n",size);
+	printf("\tSoma: \t\t%.2f ms\n\tMultiplicacao:\t%.2f ms\n\n", timeSum, timeMult);
+}
+
+void Q6ii(int size, int OS, int OM){
+	printf("\tii) Numero de operacoes realizadas (somas + multiplicacoes) por cada algoritmo:\n");
+	printf("\tPara matrizes quadradas de tamanho %d\n",size);
+	printf("\tSoma: \t\t%d Operacoes\n\tMultiplicacao:\t%d Operacoes\n", OS, OM);
+}
+void Q6 (int size, int timeSum, int timeMult, int OS, int OM){
+	printf("\n6) Implemente codigo para medir o desempenho desses algoritmos, considerando:\n");
+	Q6i		(size, timeSum, timeMult);
+	Q6ii	(size, OS, OM);
+}
+
+int main(){
+	
+	clock_t time;
+	int size=300;
+	
+	printf("Matriz A\n");
+	int a[size][size];
+	createMatriz	(size,a);		//	Criando Matriz A
+//	printMatriz		(size,a);		//	mostrando Matriz A
+	
+	printf("Matriz B\n");
+	int b[size][size];
+	createMatriz (size,b);		//	Criando Matriz B
+//	printMatriz (size,b);		//	mostrando Matriz B
+
+	time = clock();
+	printf("Sum Matriz\n");
+	int c[size][size];
+	int OperacoesSoma = soma_matriz(size,a,b,c);		//	somando as matrizes 
+	double timeSum = printTimer		(clock()-time);
+//	mostrando a soma das matrizes
+		
+	time = clock();
+	printf("resultado da multiplicacao\n");
+	int d[size][size];
+	int OperacoesMultiplicacao = matrizMultiplication(size,a,b,d);	//	Multiplicando as matrizes
+	double timeMult = printTimer		(clock()-time);
+//	Mostrando a multiplicaçao
+	
+	Q6 (size, timeSum, timeMult, OperacoesSoma,OperacoesMultiplicacao);
+}
