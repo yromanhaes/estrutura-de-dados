@@ -1,0 +1,61 @@
+struct Node
+    {
+        char num;
+        struct Node *prox;
+    };
+    typedef struct Node node;
+int main(void)
+    {
+        node *PILHA = cria_pilha();
+ //Alocando a pilha  
+  if (!PILHA)
+    {
+        printf("Sem memoria disponivel!\n");
+        exit(1);
+    }
+}
+ else
+    {
+        inicia(PILHA);
+        int opt;
+        do
+        {
+            opt = menu();
+            opcao(PILHA, opt);
+        } while (opt);
+
+        free(PILHA);
+        return 0;
+    }
+}
+//Funções opcao( ) e menu( )
+int menu(void)
+{
+    int opt;
+
+    printf("\nEscolha a opcao\n");
+    printf("1. PUSH \n");
+    printf("2. POP \n");
+    printf("4. Verifica casamento\n");
+    printf("Opcao: ");
+    scanf("%d", &opt);
+
+    return opt;
+}
+void opcao(node *PILHA, int op)
+{
+    node *tmp;
+    switch (op)
+    {
+    case 1:
+        push(PILHA);
+        break;
+    case 2:
+        tmp = pop(PILHA);
+        break;
+    case 4:
+        casamento(PILHA);
+    default:
+        printf("\n");
+    }
+}
