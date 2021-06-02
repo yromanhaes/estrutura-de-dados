@@ -1,0 +1,74 @@
+// Tamanho máximo do vetor 
+#define MAX 100
+// Tamanho do tabuleiro
+#define N 10
+struct Tabuleiro
+{
+    int b[N][N];
+};
+typedef struct pilha Pilha;
+struct pilha
+{
+    int qtd;
+    struct tabuleiro dados[MAX];
+};
+int main(void)
+{
+    pi = criar_Pilha();
+
+    resolver_NRainha(&dado, 0);
+    printf("Tamanho da pilha %d\n", tamanho_Pilha(pi));
+
+    print(&dado);
+
+    return 0;
+}
+bool resolver_NRainha(struct tabuleiro *tabuleiro, int col)
+{
+    //caso todas as rainhas forem colocadas sera voltado verdadeiro
+    if (col >= N)
+        return true;
+
+    for (int i = 0; i < N; i++)
+    {
+
+        // Verifica se a rainha pode ser colocada tabuleiroi][col] 
+        if (isSafe(btabuleiro, i, col))
+        {
+
+            // Coloque a rainha em tabuleiro[i][col] */
+            tabuleiro->b[i][col] = 1;
+            insere_Pilha(pi, dado); //add na pilha
+
+            //colocando os restos das rainhas
+            if (resolver_NRainha(tabuleiro, col + 1))
+                return true;
+
+            tabuleiro->b[i][col] = 0; // BACKTRACK
+            remove_Pilha(pi);     // remove da pilha
+        }
+    }
+
+    // caso nenhuma rainha possa sercolocada em nenhuma linha nesta coluna vai retornar falso
+    return false;
+}
+bool isSafe(struct tabuleiro *tabuleiro, int linha, int col)
+{
+    int i, j;
+    // Verifica a linha do lado esquerdo 
+    for (i = 0; i < col; i++)
+        if (tabuleiro->b[linha][i])
+            return false;
+
+    // Verificando a diagonal superior esquerdo 
+    for (i = linha, j = col; i >= 0 && j >= 0; i--, j--)
+        if (tabuleiro->b[i][j])
+            return false;
+
+    // verificando a diagonal inferior esquerdo 
+    for (i = linha, j = col; j >= 0 && i < N; i++, j--)
+        if (tabuleiro->b[i][j])
+            return false;
+
+    return true;
+}
