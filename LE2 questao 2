@@ -1,0 +1,109 @@
+struct Node
+    {
+        char num;
+        struct Node *prox;
+    };
+    typedef struct Node node;
+    int main(void)
+    {
+        node *PILHA = (node *)malloc(sizeof(node));
+        node *invertida = (node *)malloc(sizeof(node));
+//pilha será invertida e transformada para hexadecimal.
+        if (!PILHA)
+    {
+        printf("Sem memoria disponivel!\n");
+        exit(1);
+    }
+}
+// verificando se esta limpa
+else
+    {
+        inicia(PILHA);
+        inicia(invertida);
+        int opt;
+
+        do
+        {
+            opt = menu();
+            opcao(PILHA, invertida, opt);
+        } while (opt);
+
+        free(PILHA);
+        return 0;
+    }
+}
+int menu(void)
+{
+    int opt;
+
+    printf("\nEscolha a opcao\n");
+    printf("1. PUSH \n");
+    printf("2. POP \n");
+    printf("3. Exibir PILHA\n");
+    printf("4. Desempilhar\n");
+    printf("Opcao: ");
+    scanf("%d", &opt);
+      return opt;
+}
+void push(node *PILHA)
+{
+
+    node *novo = aloca();
+    novo->prox = NULL;
+    printf("%c", novo->num);
+    if (vazia(PILHA))
+    {
+        PILHA->prox = novo;
+
+}
+void desempilha(node *PILHA1, node *PILHA2)
+{
+    node *aux = (node *)malloc(sizeof(node));
+
+    node *tmp, *ultimo;
+    tmp = PILHA1;
+
+    while (tmp->prox != NULL) //Inserindo o inverso
+    {
+        ultimo = pop(PILHA1); //removendo da pilha principal
+        push2(PILHA2, ultimo->num); //inserindo esse valor na pilha 2
+        push2(aux, ultimo->num); //inserindo esse valor na pilha 2
+    }
+
+    while (aux->prox != NULL) //Inserindo a pilha auxiliar na pilha original de volta
+    {
+        ultimo = pop(aux);
+        push2(PILHA1, ultimo->num);
+    }
+    
+    printf("\nAuxiliar:");
+    exibe(aux); //exibe a pilha auxiliar vazia
+    printf("\n");
+
+    printf("Pilha Original:");
+    exibe(PILHA1); //exibe a pilha original completa
+
+    printf("\n Pilha Invertida:");
+    exibe(PILHA2);//exibe a pilha 2 invertida
+
+    verifica(PILHA1, PILHA2);//função para verificar as duas pilhas
+}
+//A função verifica recebe duas pilhas como parametros e vai removendo cada valor da pilha e vai comparando.
+int verifica(node *PILHA1, node *PILHA2)
+{
+    node *tmp, *ultimo, *ultimoP1, *ultimoP2;
+    tmp = PILHA1;
+    int result = 0;
+    while (tmp->prox != NULL) //INSERINDO O INVERSO
+    {
+        ultimoP1 = pop(PILHA1);
+        ultimoP2 = pop(PILHA2);
+
+        if (ultimoP1->num != ultimoP2->num)
+        {
+            result++;
+            break;
+        }
+    }
+    result > 0 ? printf("\nNão é palindromo"): printf("\nÉ palindromo");
+}
