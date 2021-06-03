@@ -76,27 +76,27 @@ int prefixa(fila *f, node *PILHA)
     {
         char valor_pilha = remover_fila(f); //Uma variavel recebe o primeiro valor da fila
 
-            /* Se for um operador */
+            // Se for um operador 
         if (valor_pilha == '+' || valor_pilha == '*' || valor_pilha == '-' || valor_pilha == '/') //Verifico se é um operador
         {
-            /* Recebendo o ultimo valor da pilha*/
+            // Recebendo o ultimo valor da pilha
             ultimo_valor_pilha = pop(PILHA); 
-            
-            /* Recebendo o penultimo valor da pilha*/
+           
+            // Recebendo o penultimo valor da pilha
             penultimo_valor_pilha = pop(PILHA); 
 
-            /* resolve_equacao() retorna a operação dos valores anteriores*/
+            // resolve_equacao() retorna a operação dos valores anteriores
             resultado_equacao = resolve_equacao(valor_pilha, ultimo_valor_pilha->num, penultimo_valor_pilha->num);
 
-            /* Inserindo na Pilha o resultado da operação */
+            // Inserindo na Pilha o resultado da operação 
             push2(PILHA, resultado_equacao + '0');
 
-            /* Chamo a função denovo*/
+            // Chamo a função denovo
             prefixa(f, PILHA);
         }
         else
         {
-            /* Se não for um operador insiro normalmente na pilha e chamo a função prefixa() denovo */
+            // Se não for um operador insiro normalmente na pilha e chamo a função prefixa() denovo 
             push2(PILHA, valor_pilha);
             prefixa(f, PILHA);
         }
@@ -112,7 +112,7 @@ char resolve_equacao(char operador, char primeiro, char segundo)
     sscanf(&primeiro, "%d", &primeiro_valor); //Transformando de char para inteiro
     sscanf(&segundo, "%d", &segundo_valor);   //Transformando de char para inteiro
 
-    switch (operador) //dependendo o operador retorna uma equacao
+    switch (operador) 
     {
     case '+':
         printf(" Resutado Soma %d + %d = %d\n", primeiro_valor, segundo_valor, (primeiro_valor + segundo_valor));
